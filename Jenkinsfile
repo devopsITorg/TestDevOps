@@ -44,6 +44,17 @@ pipeline {
                     '''   
                 }
         }
+
+        stage('start iis') {
+            steps {
+                
+                sh '''
+
+                  sudo sshpass -p ZojItabtsGNCo003gluut*8vz1Vc6hQx ssh -i "mumbai-key.pem" -o StrictHostKeyChecking=no administrator@35.154.6.18 iisreset /start
+                  
+                '''   
+            }
+        }
         // stage('deployments') {
         //         parallel {
         //             stage('deploy to stg') {
