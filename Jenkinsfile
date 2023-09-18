@@ -17,9 +17,11 @@ pipeline {
                       dotnet publish -o ./output
                        
                     '''
+                }
+        }
                        
                        
-                } 
+                 
     
         stage('stop iis') {
                 steps {
@@ -29,7 +31,7 @@ pipeline {
                       
                     '''   
                 }
-            }
+        }
     
         stage('deploy to prod') {
                 steps {
@@ -41,7 +43,7 @@ pipeline {
     
                     '''   
                 }
-            }
+        }
         // stage('deployments') {
         //         parallel {
         //             stage('deploy to stg') {
