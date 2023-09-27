@@ -11,7 +11,7 @@ pipeline {
         steps {
         script {
             //Define Git credentials (if not already configured in Jenkins)
-            git credentialsId: 'githubtokenforconflux', url: 'https://github.com/g34conflux/LionKing.git'
+            git url: 'https://github.com/g34conflux/LionKing.git'
         }
         }
       }
@@ -20,13 +20,12 @@ pipeline {
             steps {
                 // script {
                     // Change the directory to the 'hakunamatata' directory
-               bat 'cd hakunamatata'
+               bat 'echo "building"'
 
                     // Build the project using msbuild
                  //   bat 'msbuild /t:Package hakunamatata/hakunamatata.csproj'
 
                     // cd hakunamatata
-                bat 'msbuild hakunamatata/hakunamatata.csproj'
                 //dotnet build
                 // sudo rm -rf ./output
                 //  sudo mkdir ./output
@@ -34,11 +33,7 @@ pipeline {
                 //   dotnet publish -o ./output
                 // }
             }
-            post {
-                always {
-                    jiraSendBuildInfo branch: '', site: 'prissoft.atlassian.net'
-                }
-            }
+            
         }
         stage('Send Approval Email') {
             steps {
